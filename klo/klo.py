@@ -8,7 +8,15 @@ import requests
 def find_room():
     html = requests.get("https://foss-ag.de/").text
     soup = BeautifulSoup(html, 'html.parser')
-    dates = soup.find(id="ag-termine").next_sibling.find("ul").children
+    dates = [
+        li.get_text().strip()
+        for li in
+            soup
+                .find(id="ag-termine")
+                .find_next_sibling("div")
+                .find("ul")
+                .find_all("li")
+    ]
     for date in dates:
         print(date)
 
@@ -19,6 +27,8 @@ def on_message(room, event):
             print("{0}: {1}".format(event['sender'], event['content']['body']))
 
 def main():
+    find_room()
+    return
     client = MatrixClient("https://matrix.org")
 
     token = client.login(username="foss-ag_klo", password=os.environ['KLO_PW'])
