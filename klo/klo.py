@@ -15,7 +15,7 @@ client = MatrixClient("https://matrix.org")
 #token = client.register_with_password(username="foobar", password="monkey")
 
 # Existing user
-token = client.login(username="foss-ag_klo", password="justklo")
+token = client.login(username="foss-ag_klo", password="justkloklo")
 
 #room = client.create_room("#klotest:matrix.org")
 room = client.join_room("#klotest:matrix.org")
@@ -23,3 +23,6 @@ room.send_text("Hello!")
 
 room.add_listener(on_message)
 client.start_listener_thread()
+
+while True:
+    pass
