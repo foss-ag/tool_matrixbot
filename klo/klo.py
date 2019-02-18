@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from matrix_client.client import MatrixClient
+import os
 
 
 # Called when a message is recieved.
@@ -14,8 +15,9 @@ client = MatrixClient("https://matrix.org")
 # New user
 #token = client.register_with_password(username="foobar", password="monkey")
 
+
 # Existing user
-token = client.login(username="foss-ag_klo", password="justkloklo")
+token = client.login(username="foss-ag_klo", password=os.environ['KLO_PW'])
 
 #room = client.create_room("#klotest:matrix.org")
 room = client.join_room("#klotest:matrix.org")
