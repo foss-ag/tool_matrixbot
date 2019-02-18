@@ -2,7 +2,15 @@
 
 from matrix_client.client import MatrixClient
 import os
+from bs4 import BeautifulSoup
+import requests
 
+def find_room():
+    html = requests.get("https://foss-ag.de/").text
+    soup = BeautifulSoup(html, 'html.parser')
+    dates = soup.find(id="ag-termine").next_sibling.find("ul").children
+    for date in dates:
+        print(date)
 
 # Called when a message is recieved.
 def on_message(room, event):
