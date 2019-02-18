@@ -10,21 +10,16 @@ def on_message(room, event):
         if event['content']['msgtype'] == "m.text":
             print("{0}: {1}".format(event['sender'], event['content']['body']))
 
+def main():
+    client = MatrixClient("https://matrix.org")
 
-client = MatrixClient("https://matrix.org")
-# New user
-#token = client.register_with_password(username="foobar", password="monkey")
+    token = client.login(username="foss-ag_klo", password=os.environ['KLO_PW'])
 
+    room.add_listener(on_message)
+    client.start_listener_thread()
 
-# Existing user
-token = client.login(username="foss-ag_klo", password=os.environ['KLO_PW'])
+    while True:
+        pass
 
-#room = client.create_room("#klotest:matrix.org")
-room = client.join_room("#klotest:matrix.org")
-room.send_text("Hello!")
-
-room.add_listener(on_message)
-client.start_listener_thread()
-
-while True:
-    pass
+if __name__ == "__main__":
+    main()
