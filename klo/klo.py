@@ -21,7 +21,7 @@ token = client.login(username="foss-ag_klo", password=os.environ['KLO_PW'])
 
 #room = client.create_room("#klotest:matrix.org")
 room = client.join_room("#klotest:matrix.org")
-room.send_text("Hello!")
+room.send_text("Dick!")
 
 room.add_listener(on_message)
 client.start_listener_thread()
