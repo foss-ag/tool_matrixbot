@@ -8,27 +8,24 @@ import requests
 def find_room():
     html = requests.get("https://foss-ag.de/").text
     soup = BeautifulSoup(html, 'html.parser')
-    dates = [
-        li.get_text().strip()
-        for li in
-            soup
-                .find(id="ag-termine")
-                .find_next_sibling("div")
-                .find("ul")
-                .find_all("li")
-    ]
-    for date in dates:
-        print(date)
+    return (
+        soup
+            .find(id="ag-termine")
+            .find_next_sibling("div")
+            .find("ul")
+            .find_all("li")[0]
+            .get_text()
+            .strip()
+    )
 
 # Called when a message is recieved.
 def on_message(room, event):
     if event['type'] == "m.room.message":
         if event['content']['msgtype'] == "m.text":
+            print(find_room())
             print("{0}: {1}".format(event['sender'], event['content']['body']))
 
 def main():
-    find_room()
-    return
     client = MatrixClient("https://matrix.org")
 
     token = client.login(username="foss-ag_klo", password=os.environ['KLO_PW'])
