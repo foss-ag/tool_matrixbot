@@ -13,7 +13,7 @@ def find_room():
             .find(id="ag-termine")
             .find_next_sibling("div")
             .find("ul")
-            .find_all("li")[0]
+            .find("li")
             .get_text()
             .strip()
     )
