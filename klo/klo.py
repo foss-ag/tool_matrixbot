@@ -8,7 +8,7 @@ import requests
 def find_room():
     html = requests.get("https://foss-ag.de/").text
     soup = BeautifulSoup(html, 'html.parser')
-    return (
+    date = (
         soup
             .find(id="ag-termine")
             .find_next_sibling("div")
@@ -17,6 +17,7 @@ def find_room():
             .get_text()
             .strip()
     )
+    return date
 
 # Called when a message is recieved.
 def on_message(room, event):
