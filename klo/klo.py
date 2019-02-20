@@ -4,7 +4,22 @@ from FeatureExamples import FeatureExamples
 from FeatureHandler import FeatureHandler
 from matrix_client.client import MatrixClient
 import os
+from bs4 import BeautifulSoup
+import requests
 
+def find_room():
+    html = requests.get("https://foss-ag.de/").text
+    soup = BeautifulSoup(html, 'html.parser')
+    date = (
+        soup
+            .find(id="ag-termine")
+            .find_next_sibling("div")
+            .find("ul")
+            .find("li")
+            .get_text()
+            .strip()
+    )
+    return date
 
 def main():
     # connect to server and join room
