@@ -8,11 +8,11 @@ from bs4 import BeautifulSoup
 import requests
 
 
-def find_room(sender, message):
+def find_room(sender, message, room):
     html = requests.get("https://foss-ag.de/").text
     soup = BeautifulSoup(html, 'html.parser')
     date = soup.find(id="ag-termine").find_next_sibling("div").find("ul").find("li").get_text().strip()
-    return date
+    room.sendText(date)
 
 
 def main():
