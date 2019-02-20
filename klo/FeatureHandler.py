@@ -55,7 +55,7 @@ class FeatureHandler:
             String.
         :param feature:
             Callable. The feature will be called when the specified command occurs in the Matrix room.
-            feature must take two arguments: 'sender' and 'message'.
+            feature must take three arguments: 'sender', 'message' and 'room'.
         :raises KeyError:
             Raises KeyError if command is already defined.
         """
