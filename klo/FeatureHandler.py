@@ -96,4 +96,4 @@ class FeatureHandler:
                 for command in self.__commands:
                     if msg.startswith(command):
                         # call corresponding feature
-                        self.__features[command](sender=sender, message=msg)
+                        self.__features[command](sender=sender, message=msg, room=self.__room)

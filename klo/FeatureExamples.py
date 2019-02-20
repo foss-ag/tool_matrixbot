@@ -1,9 +1,9 @@
-
+from matrix_client.client import MatrixClient
 
 class FeatureExamples:
 
     @staticmethod
-    def echo(sender, message):
+    def echo(sender, message, room):
         """
         Print sender and message.
 
@@ -11,11 +11,13 @@ class FeatureExamples:
             String.
         :param message:
             String.
+        :param room:
+            Matrix room
         """
-        print(sender, message)
+        room.sendText(message)
 
     @staticmethod
-    def caps(sender, message):
+    def caps(sender, message, room):
         """
         Message to upper case.
 
@@ -23,5 +25,7 @@ class FeatureExamples:
             String.
         :param message:
             String.
+        :param room:
+            Matrix room.
         """
         print(message.upper())
